@@ -41,9 +41,12 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/save_state.js"></script>
     <script async="async" kind="dokieli" src="https://dokie.li/scripts/dokieli.js"></script>
     <script kind="utterances">
@@ -81,13 +84,12 @@ var addUtterances = () => {
 commentsRunWhenDOMLoaded(addUtterances);
 </script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
-    </script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://firasm.github.io/jupyterbook_course_template/about/unsyllabus.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -895,7 +897,7 @@ commentsRunWhenDOMLoaded(addUtterances);
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -931,7 +933,7 @@ commentsRunWhenDOMLoaded(addUtterances);
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -1120,7 +1122,199 @@ commentsRunWhenDOMLoaded(addUtterances);
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Unsyllabus</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#important-details">
+   Important Details
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-do-i-need-to-purchase-for-this-course">
+     What do I need to purchase for this course?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contact-us">
+   Contact Us
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluation">
+   Evaluation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#passing-requirements">
+   Passing requirements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#schedule">
+   Schedule
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-help">
+   Getting Help
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-message-from-your-instructor">
+     A message from your instructor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-should-i-take-phys-111">
+     Why should I take PHYS 111?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syllabus-vs-unsyllabus">
+   Syllabus vs. Unsyllabus
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-the-unsyllabus">
+     What is the Unsyllabus?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summary">
+     Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unsyllabus-changes">
+   Unsyllabus changes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-i-do-well-in-this-course">
+   How do I do well in this course?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#but-i-ve-never-been-good-at-physics-or-math">
+     … but I’ve never been good at physics or math!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#but-i-don-t-even-like-physics-or-math">
+     … but I don’t even like physics or math!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-tools">
+   Course Tools
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#teaching-philosophy">
+   Teaching Philosophy
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-will-this-course-be-taught">
+     How will this course be taught ?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-does-this-mean-in-practical-terms">
+     What does this mean in practical terms?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#academic-integrity">
+   Academic Integrity
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-do-i-go-through-this-course-with-integrity">
+     How do I go through this course with integrity?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-considered-academic-dishonesty-in-this-course">
+     What is considered academic dishonesty in this course?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-accommodations">
+   Course Accommodations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-if-i-miss-labs-tests-or-the-exam-due-to-an-illness-health-or-other-personal-situations">
+     What if I miss labs, tests, or the exam due to an illness, health, or other personal situations?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-if-i-have-dependents-that-rely-on-me-for-care-and-unpredictable-emergencies-may-arise">
+     What if I have dependents that rely on me for care and unpredictable emergencies may arise?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-if-i-have-to-miss-a-deadline-because-of-a-wedding-birthday-funeral-religious-holiday-or-personal-event">
+     What if I have to miss a deadline because of a wedding, birthday, funeral, religious holiday, or personal event ?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-should-i-do-if-i-need-accommodations-to-be-successful-in-this-course">
+     What should I do if I need accommodations to be successful in this course?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compassion">
+     Compassion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-should-i-think-about-if-i-m-considering-withdrawing-from-the-course">
+   What should I think about if I’m considering withdrawing from the course?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#acknowledgements">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <p><img alt="" src="../_images/header.jpg" /></p>
@@ -1605,7 +1799,7 @@ Here are the key principles I intend to apply in this class:</p>
 <p>This course will be taught as a <a class="reference external" href="https://en.wikipedia.org/wiki/Blended_learning">Blended Learning classroom</a> where some elements of a <a class="reference external" href="https://www.youtube-nocookie.com/embed/BCIxikOq73Q">flipped classroom</a> will be mixed with a more traditional coding classroom with live demos, clicker questions, and worksheets.
 Briefly, this requires students to watch videos and engage with the assigned reading prior to the classroom meeting (knowledge transfer).
 During the class meeting, the instructor guides students through clicker questions, worksheet problems, and other activities to help the students make sense of the material (sense-making).
-See <a class="reference internal" href="#masterymodel1"><span class="std std-numref">Fig. 1</span></a> for a mental model of how learning works <span id="id1">[<a class="reference internal" href="#id4">Ambrose <em>et al.</em>, 2010</a>]</span>.</p>
+See <a class="reference internal" href="#masterymodel1"><span class="std std-numref">Fig. 1</span></a> for a mental model of how learning works <span id="id1">[<a class="reference internal" href="#id4" title="Susan A. Ambrose, Michael W. Bridges, Michele DiPietro, Marsha C. Lovett, and Marie K. Norman. How Learning Works: 7 Research-Based Principles for Smart Teaching. Jossey-Bass, San Francisco, CA, 2010. ISBN 978-0-470-48410-4.">Ambrose <em>et al.</em>, 2010</a>]</span>.</p>
 <div class="figure align-default" id="masterymodel1">
 <a class="reference internal image-reference" href="../_images/masterymodel1.png"><img alt="../_images/masterymodel1.png" src="../_images/masterymodel1.png" style="width: 750px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">To develop mastery in a concept, students must first acquire the necessary skills, then practice integrating them, and finally know when to apply what they have learned. This figure was adapted from Figure 4.1 of the book “How Learning Works”.
@@ -1835,8 +2029,8 @@ Below is the list of resources I have used to put this syllabus together:</p>
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
     <a class='right-next' id="next-link" href="syllabus.html" title="next page">
     <div class="prev-next-info">
@@ -1846,25 +2040,23 @@ Below is the list of resources I have used to put this syllabus together:</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Firas Moosvi<br/>
-        
-          <div class="extra_footer">
-            <div>
+  <p>
+    
+      By Firas Moosvi<br/>
+    
+      <div class="extra_footer">
+        <div>
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
     All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
 </div>
 
-          </div>
-      </p>
-    </div>
-  </footer>
+      </div>
+  </p>
+</footer>
 </main>
 
 
